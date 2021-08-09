@@ -7,7 +7,7 @@ def main():
     try:
         yt = YouTube(link)
     except:
-        print("Connection ERROR.")
+        print("CONNECTION ERROR.")
 
     mp4files = yt.streams.filter(progressive=True)
 
@@ -15,7 +15,7 @@ def main():
     try:
         d_video.download(SAVE_PATH)
     except:
-        print("Download ERROR.")
+        print("DOWNLOAD ERROR.")
     print('Video is downloaded to ' + SAVE_PATH + " !")
 
 
