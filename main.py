@@ -4,9 +4,6 @@ from tkinter import *
 root = Tk()
 
 
-
-
-
 def myClick(FirstLabel, e, SecondLabel, d, myButton, SAVE_PATH, link):
     SAVE_PATH = e.get()
     link = d.get()
@@ -17,13 +14,11 @@ def myClick(FirstLabel, e, SecondLabel, d, myButton, SAVE_PATH, link):
     SecondLabel.pack_forget()
     myButton.pack_forget()
 
+    YTdownFunc(SAVE_PATH, link)
+
+def YTdownFunc(SAVE_PATH, link):
     loadingLabel = Label(root, text = "loading...")
     loadingLabel.pack()
-
-
-    YTdownFunc(SAVE_PATH, link, loadingLabel)
-
-def YTdownFunc(SAVE_PATH, link, loadingLabel):
     try:
         yt = YouTube(link)
     except:
@@ -58,6 +53,7 @@ def main():
     SecondLabel.pack()
     d = Entry(root, width=50, borderwidth=5)
     d.pack()
+    d.insert(0, "https://www.youtube.com/watch?v=xWOoBJUqlbI")
 
     myButton = Button(root, text= "Enter", command = lambda: myClick(FirstLabel, e, SecondLabel, d, myButton, SAVE_PATH, link))
     myButton.pack()
