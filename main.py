@@ -23,8 +23,8 @@ def YTdownFunc(SAVE_PATH, link):
         yt = YouTube(link)
     except:
         loadingLabel.pack_forget()
-        cError = Label(root, text ="CONNECTION ERROR.")
-        cError.pack()
+        cErrorLabel = Label(root, text ="CONNECTION ERROR.")
+        cErrorLabel.pack()
 
     mp4files = yt.streams.filter(progressive=True)
     d_video = yt.streams.get_by_itag(22)
@@ -32,8 +32,8 @@ def YTdownFunc(SAVE_PATH, link):
         d_video.download(SAVE_PATH)
     except:
         loadingLabel.pack_forget()
-        dError = Label(root, text ="DOWNLOAD ERROR.")
-        dError.pack()
+        dErrorLabel = Label(root, text ="DOWNLOAD ERROR.")
+        dErrorLabel.pack()
 
     loadingLabel.pack_forget()
     downloadedLabel = Label(root, text='Video is downloaded to ' + SAVE_PATH + " !")
