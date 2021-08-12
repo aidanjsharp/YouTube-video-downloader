@@ -4,14 +4,14 @@ from tkinter import *
 root = Tk()
 
 
-def myClick(FirstLabel, e, SecondLabel, d, myButton, SAVE_PATH, link):
-    SAVE_PATH = e.get()
-    link = d.get()
+def myClick(labels, entries, myButton):
+    SAVE_PATH = entries[0].get()
+    link = entries[1].get()
 
-    e.pack_forget()
-    FirstLabel.pack_forget()
-    d.pack_forget()
-    SecondLabel.pack_forget()
+    for entry in entries:
+        entry.pack_forget()
+    for label in labels:
+        label.pack_forget()
     myButton.pack_forget()
 
     YTdownFunc(SAVE_PATH, link)
@@ -39,28 +39,36 @@ def YTdownFunc(SAVE_PATH, link):
     downloadedLabel = Label(root, text='Video is downloaded to ' + SAVE_PATH + " !")
     downloadedLabel.pack()
 
+    clearButton = Button(root, text="Clear", command= "boob")
+    clearButton.pack()
+
 def main():
     SAVE_PATH = "C:/Users/Public/Downloads"
     link = "https://www.youtube.com/watch?v=xWOoBJUqlbI"
-
+    labels = []
+    entries = []
 
     FirstLabel = Label(root, text="Enter the Save Path Here:")
-    FirstLabel.pack()
-    e = Entry(root, width=50, borderwidth=5)
-    e.pack()
-    e.insert(0, "C:/Users/Public/Downloads")
-    SecondLabel = Label(root, text="Enter the YouTube link Here:")
-    SecondLabel.pack()
-    d = Entry(root, width=50, borderwidth=5)
-    d.pack()
-    d.insert(0, "https://www.youtube.com/watch?v=xWOoBJUqlbI")
+    labels.append(FirstLabel)
+    labels[0].pack()
 
-    myButton = Button(root, text= "Enter", command = lambda: myClick(FirstLabel, e, SecondLabel, d, myButton, SAVE_PATH, link))
+    e = Entry(root, width=50, borderwidth=5)
+    entries.append(e)
+    entries[0].pack()
+    entries[0].insert(0, SAVE_PATH)
+
+    SecondLabel = Label(root, text="Enter the YouTube link Here:")
+    labels.append(SecondLabel)
+    labels[1].pack()
+
+    d = Entry(root, width=50, borderwidth=5)
+    entries.append(d)
+    entries[1].pack()
+    entries[1].insert(0, link)
+
+    myButton = Button(root, text= "Enter", command = lambda: myClick(labels, entries, myButton))
     myButton.pack()
-    SAVE_PATH = e.get()
-    link = d.get()
-    print(SAVE_PATH)
-    print(link)
+
 
     root.mainloop()
 
