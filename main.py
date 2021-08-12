@@ -3,6 +3,11 @@ from tkinter import *
 
 root = Tk()
 
+SAVE_PATH = "C:/Users/Public/Downloads"
+link = "https://www.youtube.com/watch?v=xWOoBJUqlbI"
+downloadedLabel = Label(root, text='Video is downloaded to ' + SAVE_PATH + " !")
+clearButton = Button(root, text="New Download", command= lambda: main(clearButton, downloadedLabel))
+clearButton.pack()
 
 def myClick(labels, entries, myButton):
     SAVE_PATH = entries[0].get()
@@ -36,15 +41,14 @@ def YTdownFunc(SAVE_PATH, link):
         dErrorLabel.pack()
 
     loadingLabel.pack_forget()
-    downloadedLabel = Label(root, text='Video is downloaded to ' + SAVE_PATH + " !")
+
     downloadedLabel.pack()
 
-    clearButton = Button(root, text="Clear", command= "boob")
     clearButton.pack()
 
-def main():
-    SAVE_PATH = "C:/Users/Public/Downloads"
-    link = "https://www.youtube.com/watch?v=xWOoBJUqlbI"
+def main(clearButton, downloadedLabel):
+    clearButton.pack_forget()
+    downloadedLabel.pack_forget()
     labels = []
     entries = []
 
@@ -74,4 +78,4 @@ def main():
 
 
 
-main()
+main(clearButton, downloadedLabel)
