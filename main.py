@@ -1,14 +1,18 @@
 from pytube import YouTube
 from tkinter import *
 
+#creating the window
 root = Tk()
 
+#creating universal variables and labels
 SAVE_PATH = "C:/Users/Public/Downloads"
 link = "https://www.youtube.com/watch?v=xWOoBJUqlbI"
 downloadedLabel = Label(root, text='Video is downloaded to ' + SAVE_PATH + " !")
 clearButton = Button(root, text="New Download", command= lambda: main(clearButton, downloadedLabel))
 clearButton.pack()
 
+
+#defining click action for the download
 def myClick(labels, entries, myButton):
     SAVE_PATH = entries[0].get()
     link = entries[1].get()
@@ -21,6 +25,8 @@ def myClick(labels, entries, myButton):
 
     YTdownFunc(SAVE_PATH, link)
 
+
+#defining the pytube function
 def YTdownFunc(SAVE_PATH, link):
     loadingLabel = Label(root, text = "loading...")
     loadingLabel.pack()
@@ -46,12 +52,16 @@ def YTdownFunc(SAVE_PATH, link):
 
     clearButton.pack()
 
+
 def main(clearButton, downloadedLabel):
+    #unpacking old items in case the user uses the clear button
     clearButton.pack_forget()
     downloadedLabel.pack_forget()
     labels = []
     entries = []
 
+
+    #creating labels for initial window
     FirstLabel = Label(root, text="Enter the Save Path Here:")
     labels.append(FirstLabel)
     labels[0].pack()
